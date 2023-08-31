@@ -15,4 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . -t bitforge-lending:$(date +%s)
+      run: docker build . -t rodinandrei/bitforge-lending:latest
+    - name: Push the Docker inage
+      run: docker login ${{ secrets.DOCKER_HUB_LOGIN }} ${{secrets.DOCKER_HUB_PASS}} && docker push rodinandrei/bitforge-lending:latest
