@@ -23,7 +23,7 @@ jobs:
     - name: Print
       env:
         IMAGE_TAG: rodinandrei/bitforge-lending:${{ steps.commit.outputs.short }}
-      run: echo "$IAMGE_TAG"
+      run: echo "$IMAGE_TAG"
     - name: Build and push
       uses: docker/build-push-action@v4
       env:
