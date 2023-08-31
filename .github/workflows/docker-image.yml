@@ -28,11 +28,10 @@ jobs:
       uses: docker/build-push-action@v4
       env:
         IMAGE_TAG: rodinandrei/bitforge-lending:${{ steps.commit.outputs.short }}
-    
       with:
        context: .
        push: true
-       tags: $image_tag
+       tags: "$IMAGE_TAG"
   deploy: 
     needs: build
     runs-on: ubuntu-latest
