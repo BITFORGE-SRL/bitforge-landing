@@ -20,14 +20,19 @@ jobs:
       with:
           username: ${{ secrets.DOCKER_HUB_LOGIN }}
           password: ${{secrets.DOCKER_HUB_PASS}}
-    - name: Build and push
+    - name: Print
       env:
-        image_tag: rodinandrei/bitforge-lending:${{ steps.commit.outputs.short }}
+        IMAGE_TAG: rodinandrei/bitforge-lending:${{ steps.commit.outputs.short }}
+      run: echo "$IAMGE_TAG"
+    - name: Build and push
       uses: docker/build-push-action@v4
+      env:
+        IMAGE_TAG: rodinandrei/bitforge-lending:${{ steps.commit.outputs.short }}
+    
       with:
        context: .
        push: true
-       tags: ${{image_tag}}
+       tags: $image_tag
   deploy: 
     needs: build
     runs-on: ubuntu-latest
