@@ -27,4 +27,11 @@ jobs:
        context: .
        push: true
        tags: rodinandrei/bitforge-lending:latest
-     
+    - name: Update Swarm Service
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.SWARM_MANAGER_HOST }}
+        username: ${{ secrets.SWARM_MANAGER_LOGIN }}
+        password: ${{ secrets.SWARM_MANAGER_PASS }}
+        port: 22
+        script: whoami
