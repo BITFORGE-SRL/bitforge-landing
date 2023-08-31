@@ -21,14 +21,15 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_LOGIN }}
           password: ${{secrets.DOCKER_HUB_PASS}}
     - name: Build and push
-      uses: docker/build-push-action@v4
       env:
-         image_tag: rodinandrei/bitforge-lending:${{ steps.commit.outputs.short }}
+        image_tag: rodinandrei/bitforge-lending:${{ steps.commit.outputs.short }}
+      uses: docker/build-push-action@v4
       with:
        context: .
        push: true
        tags: "$image_tag"
   deploy: 
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Update Swarm Service
