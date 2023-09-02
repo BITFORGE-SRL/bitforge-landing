@@ -32,7 +32,7 @@ jobs:
        tags: ${{ env.IMAGE_TAG }}
     - name: Set color
       id: random-color-generator
-      run: echo "SELECTED_COLOR=green" >> $c
+      run: echo "SELECTED_COLOR=green" >> $GITHUB_OUTPUT
   deploy: 
     needs: build
     runs-on: ubuntu-latest
