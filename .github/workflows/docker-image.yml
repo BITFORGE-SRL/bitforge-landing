@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Test
-      run: echo ${{ jobs.buildandpush.steps[*].env }}
+      run: echo "${{ jobs.buildandpush.steps[*].env }}"
     - name: Update Swarm Service
       uses: appleboy/ssh-action@v1.0.0
       with:
