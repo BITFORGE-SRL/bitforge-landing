@@ -21,6 +21,12 @@ jobs:
       with:
           username: ${{ secrets.DOCKER_HUB_LOGIN }}
           password: ${{secrets.DOCKER_HUB_PASS}}
+    - name: Create Tag
+      id: create-tag
+      run: |
+        my_var="Hello World"
+        echo "Output [$my_var]"
+        echo "my_var=$my_var" >> $GITHUB_OUTPUT    
     - name: Build and push
       id: buildandpush
       env:
@@ -32,7 +38,7 @@ jobs:
        tags: ${{ env.IMAGE_TAG }}
       run: echo "imageTag=${{ env.IMAGE_TAG }}" >> $GITHUB_OUTPUT
     outputs:
-      imageTag: ${{ steps.buildandpush.outputs.imageTag }}
+      imageTag: ${{ steps.create-tag.outputs.my_var }}
   deploy: 
     needs: build
     runs-on: ubuntu-latest
