@@ -36,7 +36,6 @@ jobs:
        context: .
        push: true
        tags: ${{ env.IMAGE_TAG }}
-      run: echo "imageTag=${{ env.IMAGE_TAG }}" >> $GITHUB_OUTPUT
     outputs:
       imageTag: ${{ steps.create-tag.outputs.my_var }}
   deploy: 
