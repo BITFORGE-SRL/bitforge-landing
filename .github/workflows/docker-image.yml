@@ -23,21 +23,16 @@ jobs:
           password: ${{secrets.DOCKER_HUB_PASS}}
     - name: Create Tag
       id: create-tag
-      run: |
-        my_var="Hello World"
-        echo "Output [$my_var]"
-        echo "my_var=$my_var" >> $GITHUB_OUTPUT    
+      run: echo "imageTag=rodinandrei/bitforge-lending:${{ steps.commit.outputs.short }}" >> $GITHUB_OUTPUT    
     - name: Build and push
       id: buildandpush
-      env:
-        IMAGE_TAG: rodinandrei/bitforge-lending:${{ steps.commit.outputs.short }}
       uses: docker/build-push-action@v4
       with:
        context: .
        push: true
-       tags: ${{ env.IMAGE_TAG }}
+       tags: ${{ steps.create-tag.outputs.imageTag }}
     outputs:
-      imageTag: ${{ steps.create-tag.outputs.my_var }}
+      imageTag: ${{ steps.create-tag.outputs.imageTag }}
   deploy: 
     needs: build
     runs-on: ubuntu-latest
