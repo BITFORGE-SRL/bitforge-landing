@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - env:
-        OUTPUT1: ${{ steps }}
+        OUTPUT1: ${{ env.IMAGE_TAG }}
       run: echo $OUTPUT1
     - name: Update Swarm Service
       uses: appleboy/ssh-action@v1.0.0
