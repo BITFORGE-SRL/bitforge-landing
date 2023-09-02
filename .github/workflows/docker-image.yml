@@ -31,7 +31,7 @@ jobs:
        push: true
        tags: ${{ env.IMAGE_TAG }}
     outputs:
-      imageTag: ${{ steps.commit.outputs.short }}
+      imageTag: ${{ steps.buildandpush.env.IMAGE_TAG }}
   deploy: 
     needs: build
     runs-on: ubuntu-latest
