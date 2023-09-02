@@ -32,14 +32,14 @@ jobs:
        tags: ${{ env.IMAGE_TAG }}
     - name: Set color
       id: random-color-generator
-      run: echo "SELECTED_COLOR=green" >> $GITHUB_OUTPUT
+      run: echo "SELECTED_COLOR=green" >> $c
   deploy: 
     needs: build
     runs-on: ubuntu-latest
     steps:
     - env:
         OUTPUT1: $GITHUB_OUTPUT
-      run: echo "$OUTPUT1"
+      run: echo $OUTPUT1
     - name: Update Swarm Service
       uses: appleboy/ssh-action@v1.0.0
       with:
