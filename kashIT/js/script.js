@@ -2,8 +2,9 @@
 
 	"use strict";
 	const currentPath = document.currentScript.getAttribute('data-source');
+	console.log(currentPath);
 
-	const teamMembers = [{ description: 'Nam ultricies sed leolet eget vehic. Sed varius non magna quis mats. Integer finibus nil at tempus semper, rokomoni our has auctor leo.', name: 'Andrei Rodin', jobPosition: 'Team Lead', imageSrc: 'images/resource/author-2.jpg' }, { description: 'Nam ultricies sed leolet eget vehic. Sed varius non magna quis mats. Integer finibus nil at tempus semper, rokomoni our has auctor leo.', name: 'Mihuil', jobPosition: 'Database Developer', imageSrc: 'images/resource/author-2.jpg' }]
+	const teamMembers = [{ description: 'Nam ultricies sed leolet eget vehic. Sed varius non magna quis mats. Integer finibus nil at tempus semper, rokomoni our has auctor leo.', name: 'Andrei Rodin', jobPosition: 'Team Lead', imageSrc: 'images/resource/author-2.jpg' }, { description: 'Nam ultricies sed leolet eget vehic. Sed varius non magna quis mats. Integer finibus nil at tempus semper, rokomoni our has auctor leo.', name: 'Michael Chemyakin', jobPosition: 'Database Developer', imageSrc: 'images/resource/author-2.jpg' }]
 
 
 
@@ -22,7 +23,17 @@
 		'price.html': { blockIds: 'price.html', renderHtml() { renderPrice(this.blockIds) } },
 		'services.html': { blockIds: 'services.html', renderHtml() { renderServices(this.blockIds) } },
 		'team.html': { blockIds: 'team.html', renderHtml() { renderTeam(this.blockIds) } },
-		'testimonial.html': { blockIds: 'testimonial.html', renderHtml() { renderTestimonial(this.blockIds) } }
+		'testimonial.html': { blockIds: 'testimonial.html', renderHtml() { renderTestimonial(this.blockIds) } },
+
+		'contact.html': { blockIds: '', renderHtml() { renderEmpty() } },
+		'blog.html': { blockIds: '', renderHtml() { renderEmpty() } },
+		'blog-detail.html': { blockIds: '', renderHtml() { renderEmpty() } },
+		'blog-sidebar.html': { blockIds: '', renderHtml() { renderEmpty() } },
+		'case.html' : { blockIds: '', renderHtml() { renderEmpty() } },
+		'case-detail.html': { blockIds: '', renderHtml() { renderEmpty() } },
+		'gallery.html': { blockIds: '', renderHtml() { renderEmpty() } },
+		'service.html': { blockIds: '', renderHtml() { renderEmpty() } },
+		'service-detail.html': { blockIds: '', renderHtml() { renderEmpty() } },
 	}
 
 
@@ -599,6 +610,7 @@
 
 	function renderAbout(blockId) {
 		const parentBlock = document.getElementById(blockId);
+
 		teamMembers.forEach(({ description, imageSrc, jobPosition, name }) => {
 			const childrenBlock = `<div class="testimonial-block_one">
 			<div class="testimonial-block_one-inner">
@@ -839,6 +851,11 @@
 		})
 	}
 
+	function renderEmpty() {
+	}
+
+
+
 
 
 	/* ==========================================================================
@@ -854,7 +871,7 @@
 	   ========================================================================== */
 
 	$(window).on('load', function () {
-		fileTemplates[currentPath].renderHtml()
+		fileTemplates[currentPath].renderHtml();
 		handlePreloader();
 	});
 
