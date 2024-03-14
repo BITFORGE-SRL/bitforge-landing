@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "main" ]
 env:
-  SWARM_SERVICE: API_GATEWAY_nginx
+  SWARM_SERVICE: bf_landing
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,7 +23,7 @@ jobs:
           password: ${{secrets.DOCKER_HUB_PASS}}
     - name: Create Tag
       id: create-tag
-      run: echo "imageTag=rodinandrei/bitforge-lending:${{ steps.commit.outputs.short }}" >> $GITHUB_OUTPUT    
+      run: echo "imageTag=rodinandrei/bitforge-landing:${{ steps.commit.outputs.short }}" >> $GITHUB_OUTPUT    
     - name: Build and push
       id: buildandpush
       uses: docker/build-push-action@v4
